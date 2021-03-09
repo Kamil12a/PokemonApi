@@ -4,7 +4,7 @@ import { Favourites } from "./views/favourites/favourites";
 import { Home } from "./views/home/home";
 import { Pokemons } from "./views/pokemons/pokemons";
 
-
+import { Pokemon } from "./views/pokemons/pokemon";
 /* Routing is not complete, please add missing part of the router to make it work properly
 
 Take a look at list of imported components!!!
@@ -29,16 +29,22 @@ function App() {
               <ul className="flex poke-font justify-between">
                 <li className="mr-4">
                   <Link to="/">Home</Link>
+                 
                 </li>
                 <li className="mr-4">
                   <Link to="/pokemons">Pokemons</Link>
+                  <Route path="/pokemons" component={Pokemons}/>
+                  
                 </li>
+                
                 <li className="mr-4">
                   <Link to="/favourites">Favourites</Link>
+                  <Route path="/favourites" component={Favourites}/>
                 </li>
               </ul>
             </nav>
           </div>
+          <Route path="/pokemon" component={Pokemon}/>
         </Router>
       </div>
     </main>
