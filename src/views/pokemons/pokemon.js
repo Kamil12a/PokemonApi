@@ -13,27 +13,75 @@ export const Pokemon = (props) => {
   const [state, setState] = useState("initial");
   const [index,setIndex]=useState(parseInt(props.location.index)+1)
   const [imageValue,setImage]=useState(false)
-  const [storageLen,setStorageLen]=useState(localStorage.length)
+
   
 const addToFavourites = event => {
-  if(storageLen<6){
-    let a=''
+  
+ 
+  if(localStorage.length/4<6){
+    var a=''
     for (let i=0;i<pokemon.types.length;i++){
       
       a=a+" "+pokemon.types[i].type.name
     }
    
-    localStorage.setItem(`pokemon${storageLen}Name`, pokemon.name);
-    localStorage.setItem(`pokemon${storageLen}Id`, pokemon.id);
-    localStorage.setItem(`pokemon${storageLen}Type`, a);
-    localStorage.setItem(`pokemon${storageLen}avatar`,pokemon.sprites.front_default );
-    setStorageLen(storageLen+1)
-    // setStorageLen(0)
+    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}Name`, pokemon.name);
+    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}Id`, pokemon.id);
+    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}Type`, a);
+    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}avatar`,pokemon.sprites.front_default );
+   
+
     // localStorage.clear()
   }
-  
-  
+  else{
+   
+  for(var i=5;i>0;i--){
+    localStorage.setItem(`pokemon${i}Name` ,localStorage.getItem(`pokemon${i-1}Name`));
+    localStorage.setItem(`pokemon${i}Type` ,localStorage.getItem(`pokemon${i-1}Type`));
+    localStorage.setItem(`pokemon${i}Id` ,localStorage.getItem(`pokemon${i-1}Id`));
+    localStorage.setItem(`pokemon${i}avatar` ,localStorage.getItem(`pokemon${i-1}avatar`));
+  }
+  var a=''
+  for (let i=0;i<pokemon.types.length;i++){
+    
+    a=a+" "+pokemon.types[i].type.name
+  }
+  localStorage.setItem('pokemon0Name', pokemon.name)
+  localStorage.setItem('pokemon0Id', pokemon.id)
+  // localStorage.setItem('pokemon0Type', a)
+  localStorage.setItem('pokemon0avatar',pokemon.sprites.front_default)
 }
+       
+  // else{
+     
+  //     for(let i=0;i<24;i++){
+  //      var pokemonIndex= parseInt(Object.keys(localStorage)[i][7])
+  //      if(pokemonIndex!=5){
+  //       var pokemonValue= Object.values(localStorage)[i] //value 
+  //        localStorage.setItem(Object.keys(localStorage)[i].replace(pokemonIndex.toString(),(pokemonIndex+1).toString()),pokemonValue)
+        // console.log(Object.keys(localStorage)[i].replace(pokemonIndex.toString(),(pokemonIndex+1).toString()))
+        // console.log(pokemonValue)
+
+        }
+      //  else{
+      //    var a = '';
+      //   for (let i=0;i<pokemon.types.length;i++){
+      
+      //     a=a+" "+pokemon.types[i].type.name
+      //   }
+       
+        // localStorage.setItem(`pokemon0Name`, pokemon.name);
+        // localStorage.setItem(`pokemon0Id`, pokemon.id);
+        // localStorage.setItem(`pokemon0Type`, a);
+        // localStorage.setItem(`pokemon0avatar`,pokemon.sprites.front_default );
+      //  }
+       
+       
+      // }
+      
+
+  
+
 
   function previousPokemon(){
       if(index>1){
