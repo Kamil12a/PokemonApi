@@ -14,21 +14,27 @@ export const Pokemon = (props) => {
   const [index,setIndex]=useState(parseInt(props.location.index)+1)
   const [imageValue,setImage]=useState(false)
   const [storageLen,setStorageLen]=useState(localStorage.length)
-
-const addToFavourites = event => {
-  setStorageLen(localStorage.length)
-  let a=''
-  for (let i=0;i<pokemon.types.length;i++){
-    
-    a=a+" "+pokemon.types[i].type.name
-  }
- 
-  localStorage.setItem(`pokemonName${storageLen}`, pokemon.name);
-  localStorage.setItem(`pokemonId${storageLen}`, pokemon.id);
-  localStorage.setItem(`pokemonType${storageLen}`, a);
-  localStorage.setItem(`avatar${storageLen}`,pokemon.sprites.front_default );
-}
   
+const addToFavourites = event => {
+  if(storageLen<6){
+    let a=''
+    for (let i=0;i<pokemon.types.length;i++){
+      
+      a=a+" "+pokemon.types[i].type.name
+    }
+   
+    localStorage.setItem(`pokemon${storageLen}Name`, pokemon.name);
+    localStorage.setItem(`pokemon${storageLen}Id`, pokemon.id);
+    localStorage.setItem(`pokemon${storageLen}Type`, a);
+    localStorage.setItem(`pokemon${storageLen}avatar`,pokemon.sprites.front_default );
+    setStorageLen(storageLen+1)
+    // setStorageLen(0)
+    // localStorage.clear()
+  }
+  
+  
+}
+
   function previousPokemon(){
       if(index>1){
         setIndex(index-1)
@@ -125,7 +131,7 @@ const addToFavourites = event => {
             <Button  onClick={previousPokemon} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Previous</Button> 
             <Button onClick={nextPokemon} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Next</Button> 
             <Button onClick={addToFavourites} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Add to favourites</Button> 
-        </div> <Button onClick={nextPokemon} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Next</Button> 
+        </div> 
        
          </>)}
          {imageValue===true &&(<>   {<img style={{width:"200px", height:"200px"}}src={pokemon.sprites.front_default}></img> }</>)}

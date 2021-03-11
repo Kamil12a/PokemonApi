@@ -3,84 +3,49 @@ import { Page } from '../../components/page'
 import { Title } from '../../components/title'
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
-const examplePokemon = {
-  id: 1,
-  name: "bulbasaur",
-  avatar:
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/1.png",
-  types: [
-    {
-      slot: 1,
-      type: {
-        name: "grass",
-        url: "https://pokeapi.co/api/v2/type/12/",
-      },
-    },
-    {
-      slot: 2,
-      type: {
-        name: "poison",
-        url: "https://pokeapi.co/api/v2/type/4/",
-      },
-    },
-  ],
-};
-
 export const Favourites = () => {
   return (
     <Page>
       <Title>Favourites</Title>
 
-      <p className="text-white py-6 text-center">
-        Here will be list of saved pokemons from localStorage
-      </p>
-
-       <ol className="text-white list-decimal">
-        <p className="font-bold">What you need to do</p>
-        <li>
-          Import hook `useLocalStorage` and use it to consume data from localStorage, it's fairly straightforward. Think of it as `useState`, in case of any problems don't hesitate to ask me for help
-        </li>
-        <li>
-          Use loaded data to display list of pokemons added to localStorage. If there is no pokemon in localStorage display message "There is no pokemons in your favourties list "
-        </li>
-        </ol>
+    
 
       <div className="grid grid-rows-2 grid-flow-col gap-4">
         <PokemonProfile
-          name={examplePokemon.name}
-          types={examplePokemon.types}
-          avatar={examplePokemon.avatar}
-          number={examplePokemon.id}
+          name={ localStorage.getItem('pokemon0Name')}
+          number={localStorage.getItem('pokemon0Id')}
+          avatar={localStorage.getItem('pokemon0avatar')}
+          types={localStorage.getItem('pokemon0Type')}
         />
         <PokemonProfile
-          name={examplePokemon.name}
-          types={examplePokemon.types}
-          avatar={examplePokemon.avatar}
-          number={examplePokemon.id}
+         name={ localStorage.getItem('pokemon1Name')}
+         number={localStorage.getItem('pokemon1Id')}
+         avatar={localStorage.getItem('pokemon1avatar')}
+         types={localStorage.getItem('pokemon1Type')}
         />
         <PokemonProfile
-          name={examplePokemon.name}
-          types={examplePokemon.types}
-          avatar={examplePokemon.avatar}
-          number={examplePokemon.id}
+          name={ localStorage.getItem('pokemon2Name')}
+          number={localStorage.getItem('pokemon2Id')}
+          avatar={localStorage.getItem('pokemon2avatar')}
+          types={localStorage.getItem('pokemon2Type')}
         />
         <PokemonProfile
-          name={examplePokemon.name}
-          types={examplePokemon.types}
-          avatar={examplePokemon.avatar}
-          number={examplePokemon.id}
+           name={ localStorage.getItem('pokemon3Name')}
+           number={localStorage.getItem('pokemon3Id')}
+           avatar={localStorage.getItem('pokemon3avatar')}
+           types={localStorage.getItem('pokemon3Type')}
         />
         <PokemonProfile
-          name={examplePokemon.name}
-          types={examplePokemon.types}
-          avatar={examplePokemon.avatar}
-          number={examplePokemon.id}
+        name={ localStorage.getItem('pokemon4Name')}
+        number={localStorage.getItem('pokemon4Id')}
+        avatar={localStorage.getItem('pokemon4avatar')}
+        types={localStorage.getItem('pokemon4Type')}
         />
         <PokemonProfile
-          name={examplePokemon.name}
-          types={examplePokemon.types}
-          avatar={examplePokemon.avatar}
-          number={examplePokemon.id}
+           name={ localStorage.getItem('pokemon5Name')}
+           number={localStorage.getItem('pokemon5Id')}
+           avatar={localStorage.getItem('pokemon5avatar')}
+           types={localStorage.getItem('pokemon5Type')}
         />
       </div>
     </Page>
@@ -101,7 +66,8 @@ return (
     <div className="pt-4 text-center">
       <figcaption className="font-medium">
         <div className="text-cyan-600">#{number} {name}</div>
-        <div className="text-gray-500">{types.map(({type}) => type.name).join(', ')}</div>
+        <div className="text-gray-500">#{types} </div>
+       
       </figcaption>
     </div>
   </figure>
