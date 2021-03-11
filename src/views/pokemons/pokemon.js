@@ -9,11 +9,27 @@ import { Button } from 'react-bootstrap';
 export const Pokemon = (props) => {
   const [array, setArray]=useState([])
   const [pokemons, setPokemons] = useState([]);
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setPokemon] = useState('');
   const [state, setState] = useState("initial");
- const [index,setIndex]=useState(props.location.index)
-const [imageValue,setImage]=useState(false)
-    function previousPokemon(){
+  const [index,setIndex]=useState(parseInt(props.location.index)+1)
+  const [imageValue,setImage]=useState(false)
+  const [storageLen,setStorageLen]=useState(localStorage.length)
+
+const addToFavourites = event => {
+  setStorageLen(localStorage.length)
+  let a=''
+  for (let i=0;i<pokemon.types.length;i++){
+    
+    a=a+" "+pokemon.types[i].type.name
+  }
+ 
+  localStorage.setItem(`pokemonName${storageLen}`, pokemon.name);
+  localStorage.setItem(`pokemonId${storageLen}`, pokemon.id);
+  localStorage.setItem(`pokemonType${storageLen}`, a);
+  localStorage.setItem(`avatar${storageLen}`,pokemon.sprites.front_default );
+}
+  
+  function previousPokemon(){
       if(index>1){
         setIndex(index-1)
       }
@@ -41,7 +57,7 @@ const [imageValue,setImage]=useState(false)
     if(!index){
       setIndex(1)
     }
-    
+   
     useEffect(()=>{
       
         setState("loading");
@@ -108,8 +124,8 @@ const [imageValue,setImage]=useState(false)
         <div style={{display:"flex"}}>
             <Button  onClick={previousPokemon} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Previous</Button> 
             <Button onClick={nextPokemon} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Next</Button> 
-            
-        </div>
+            <Button onClick={addToFavourites} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Add to favourites</Button> 
+        </div> <Button onClick={nextPokemon} className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1" >Next</Button> 
        
          </>)}
          {imageValue===true &&(<>   {<img style={{width:"200px", height:"200px"}}src={pokemon.sprites.front_default}></img> }</>)}
