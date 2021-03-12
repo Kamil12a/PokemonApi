@@ -23,49 +23,61 @@ export const Favourites = () => {
           number={localStorage.getItem('pokemon0Id')}
           avatar={localStorage.getItem('pokemon0avatar')}
           types={localStorage.getItem('pokemon0Type')}
+          index={0}
         />
         <PokemonProfile
          name={ localStorage.getItem('pokemon1Name')}
          number={localStorage.getItem('pokemon1Id')}
          avatar={localStorage.getItem('pokemon1avatar')}
          types={localStorage.getItem('pokemon1Type')}
+         index={1}
         />
         <PokemonProfile
           name={ localStorage.getItem('pokemon2Name')}
           number={localStorage.getItem('pokemon2Id')}
           avatar={localStorage.getItem('pokemon2avatar')}
           types={localStorage.getItem('pokemon2Type')}
+          index={2}
         />
         <PokemonProfile
            name={ localStorage.getItem('pokemon3Name')}
            number={localStorage.getItem('pokemon3Id')}
            avatar={localStorage.getItem('pokemon3avatar')}
            types={localStorage.getItem('pokemon3Type')}
+           index={3}
         />
         <PokemonProfile
         name={ localStorage.getItem('pokemon4Name')}
         number={localStorage.getItem('pokemon4Id')}
         avatar={localStorage.getItem('pokemon4avatar')}
         types={localStorage.getItem('pokemon4Type')}
+        index={4}
         />
         <PokemonProfile
            name={ localStorage.getItem('pokemon5Name')}
            number={localStorage.getItem('pokemon5Id')}
            avatar={localStorage.getItem('pokemon5avatar')}
            types={localStorage.getItem('pokemon5Type')}
+           index={5}
         />
       </div>
     </Page>
   );
 }
 
-const PokemonProfile = ({number, name, types, avatar}) => {
+const PokemonProfile = ({number, name, types, avatar,index}) => {
+  const [cart, setCart] = useState([]);
   function deletePoke(){
-    
+    localStorage.removeItem(`pokemon${index}Name`)
+    localStorage.removeItem(`pokemon${index}Id`)
+    localStorage.removeItem(`pokemon${index}Type`)
+    localStorage.removeItem(`pokemon${index}avatar`)
+    window.location.reload(true);
+
   }
 return (
   
-  <figure className="max-w-xs bg-gray-100 rounded-xl p-4">
+  <figure className="max-w-xs bg-gray-100 rounded-xl p-4" id={index}>
     <img
       className="w-32 h-32 rounded-full mx-auto"
       src={avatar}

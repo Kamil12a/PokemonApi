@@ -16,19 +16,34 @@ export const Pokemon = (props) => {
 
   
 const addToFavourites = event => {
-  
- 
+  var a=''
+    for (let i=0;i<pokemon.types.length;i++){
+      
+      a=a+" "+pokemon.types[i].type.name
+    }
+ var pokemonMissing;
   if(localStorage.length/4<6){
     var a=''
     for (let i=0;i<pokemon.types.length;i++){
       
       a=a+" "+pokemon.types[i].type.name
     }
+ var pokemonMissing;
+    for(var i=5;i>-1;i--){
+      
+      if(localStorage.getItem(`pokemon${i}Name`)===null){
+        pokemonMissing=i
+        console.log(pokemonMissing)
+        
+      }
+    
+  }
+  localStorage.setItem(`pokemon${pokemonMissing}Name`, pokemon.name);
+  localStorage.setItem(`pokemon${pokemonMissing}Id`, pokemon.id);
+  localStorage.setItem(`pokemon${pokemonMissing}Type`, a);
+  localStorage.setItem(`pokemon${pokemonMissing}avatar`,pokemon.sprites.front_default );
    
-    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}Name`, pokemon.name);
-    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}Id`, pokemon.id);
-    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}Type`, a);
-    localStorage.setItem(`pokemon${Math.floor(localStorage.length/4)}avatar`,pokemon.sprites.front_default );
+   
    
 
     // localStorage.clear()
