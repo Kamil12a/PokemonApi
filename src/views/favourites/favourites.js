@@ -2,8 +2,15 @@ import React from 'react'
 import { Page } from '../../components/page'
 import { Title } from '../../components/title'
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { Button } from 'react-bootstrap';
+import { pokeApiResponse } from "../../utils/sampleResponse";
+import{useState,useEffect } from 'react';
+import {  Link, Route } from "react-router-dom";
 
 export const Favourites = () => {
+  
+  
+  
   return (
     <Page>
       <Title>Favourites</Title>
@@ -53,8 +60,11 @@ export const Favourites = () => {
 }
 
 const PokemonProfile = ({number, name, types, avatar}) => {
-
+  function deletePoke(){
+    
+  }
 return (
+  
   <figure className="max-w-xs bg-gray-100 rounded-xl p-4">
     <img
       className="w-32 h-32 rounded-full mx-auto"
@@ -67,6 +77,7 @@ return (
       <figcaption className="font-medium">
         <div className="text-cyan-600">#{number} {name}</div>
         <div className="text-gray-500">#{types} </div>
+        <Button onClick={deletePoke} style={{border:"2px solid", borderRadius:"20px",width:"150px",height:"50px"}} >Delete</Button> 
        
       </figcaption>
     </div>

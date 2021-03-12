@@ -48,36 +48,14 @@ const addToFavourites = event => {
   }
   localStorage.setItem('pokemon0Name', pokemon.name)
   localStorage.setItem('pokemon0Id', pokemon.id)
-  // localStorage.setItem('pokemon0Type', a)
+  localStorage.setItem('pokemon0Type', a)
   localStorage.setItem('pokemon0avatar',pokemon.sprites.front_default)
 }
        
-  // else{
-     
-  //     for(let i=0;i<24;i++){
-  //      var pokemonIndex= parseInt(Object.keys(localStorage)[i][7])
-  //      if(pokemonIndex!=5){
-  //       var pokemonValue= Object.values(localStorage)[i] //value 
-  //        localStorage.setItem(Object.keys(localStorage)[i].replace(pokemonIndex.toString(),(pokemonIndex+1).toString()),pokemonValue)
-        // console.log(Object.keys(localStorage)[i].replace(pokemonIndex.toString(),(pokemonIndex+1).toString()))
-        // console.log(pokemonValue)
+
 
         }
-      //  else{
-      //    var a = '';
-      //   for (let i=0;i<pokemon.types.length;i++){
-      
-      //     a=a+" "+pokemon.types[i].type.name
-      //   }
-       
-        // localStorage.setItem(`pokemon0Name`, pokemon.name);
-        // localStorage.setItem(`pokemon0Id`, pokemon.id);
-        // localStorage.setItem(`pokemon0Type`, a);
-        // localStorage.setItem(`pokemon0avatar`,pokemon.sprites.front_default );
-      //  }
-       
-       
-      // }
+   
       
 
   
